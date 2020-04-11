@@ -23,9 +23,19 @@ void test()
     Destroy(&_array);
 }
 
+void test_insert()
+{
+    StaticArray _array;
+    Init(&_array);
+    printf("Insert:\n");
+    printf("\t%s\n", Insert(&_array, 1, (const ElemType*)1) ? "Success" : "Fail");
+    Print(&_array);
+}
+
 int main()
 {
     test();
+    test_insert();
     (void)getchar();
     return 0;
 }

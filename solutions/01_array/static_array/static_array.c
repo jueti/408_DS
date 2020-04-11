@@ -49,7 +49,7 @@ bool Insert(StaticArray* pL, const int index, const ElemType* elem)
     assert(index >= 0);
     assert(length >= index + 1);
     assert(length < MAX_SIZE);
-    if (length == MAX_SIZE) return false;
+    if (!(index >= 0 && length >= index + 1 && length < MAX_SIZE)) return false;
     int i = length - 1;
     for (; i >= index; i--)
         pL->data[i + 1] = pL->data[i];
