@@ -30,7 +30,7 @@ void Get(const StaticArray* pL, const int index, ElemType* result)
     const int length = Count(pL);
     assert(index >= 0);
     assert(length >= index + 1);
-    *result = (index >= 0 && length >= index + 1) ? pL->data[index] : -1 ;     /* raise -1 if out of range */
+    *result = (index >= 0 && length >= index + 1) ? pL->data[index] : -1 ;               /* raise -1 if out of range */
 }
 
 int Locate(const StaticArray* pL, const ElemType* elem)

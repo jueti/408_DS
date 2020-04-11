@@ -20,4 +20,5 @@ bool Append(StaticArray* pL, const ElemType* elem);
 void Delete(StaticArray* pL, const int index, ElemType* result);
 void Destroy(StaticArray* pL);
 void Print(StaticArray* pL);
+
 #endif // __STATIC_ARRAY_H
