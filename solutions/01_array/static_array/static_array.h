@@ -1,7 +1,7 @@
 #ifndef __STATIC_ARRAY_H
 #define __STATIC_ARRAY_H
 
-#define MAX_SIZE 100
+#define MAX_SIZE 10
 
 typedef int ElemType;
 typedef struct {

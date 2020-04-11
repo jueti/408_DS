@@ -6,9 +6,20 @@ StaticArray _array;
 void test()
 {
     Init(&_array);
-    ElemType i = 0;
-    while (Append(&_array, &i))
-        i++;
+    int i = 0;
+    ElemType elem = i;
+    printf("Append\n");
+    while (Append(&_array, &elem)) {
+        printf("\t%d\n", elem);
+        elem = ++i;
+    }
+    Print(&_array);
+    printf("Delete:\n");
+    while (!Empty(&_array)) {
+        Delete(&_array, 0, &elem);
+        if (elem == -1) break;
+        printf("\t%d\n", elem);
+    }
     Print(&_array);
 }
 
@@ -16,6 +27,6 @@ void test()
 int main()
 {
     test();
-    (void)getchar();
+    //(void)getchar();
     return 0;
 }

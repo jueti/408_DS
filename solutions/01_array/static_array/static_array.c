@@ -68,7 +68,19 @@ bool Append(StaticArray* pL, const ElemType* elem)
 
 void Delete(StaticArray* pL, const int index, ElemType* result)
 {
-    
+    const int length = Count(pL);
+    assert(length > 0);
+    assert(index >= 0);
+    assert(index <= length);
+    *result = -1;
+    if (length > 0 && index >= 0 && index <= length) {
+        *result = pL->data[index];
+        int i = index;
+        for (; i < length; i++)
+            pL->data[i] = pL->data[i + 1];
+        pL->data[length - 1] = 0;
+        pL->length--;
+    }
 }
 
 void Destroy(StaticArray* pL)
@@ -83,9 +95,12 @@ void Print(StaticArray* pL)
     setvbuf(stdout, buff, _IOFBF, sizeof(buff));
     int i = 0;
     ElemType j;
+    printf("Print:\n");
     for (; i < length; i++) {
         Get(pL, i, &j);
-        printf("L[%d]=%d\n", i, j);
+        printf("\tL[%d]=%d\n", i, j);
     }
+    if (Empty(pL)) printf("\tEmpty\n");
     fflush(stdout);
+    setvbuf(stdout, '\0', _IONBF, 0);
 }
