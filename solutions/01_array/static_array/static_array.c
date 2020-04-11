@@ -3,6 +3,7 @@
 
 void Init(StaticArray* pL)
 {
+//Usage: Init(&_array);
     assert(pL);
     memset(pL, '\0', MAX_SIZE * sizeof(ElemType));
     pL->length = 0;
@@ -59,6 +60,14 @@ bool Insert(StaticArray* pL, const int index, const ElemType* elem)
 
 bool Append(StaticArray* pL, const ElemType* elem)
 {
+//Usage:
+//    int i = 0;
+//    ElemType elem = i;
+//    printf("Append:\n");
+//    while (Append(&_array, &elem)) {
+//        printf("\t%d\n", elem);
+//        elem = ++i;
+//    }
     const int length = Count(pL);
     if (length == MAX_SIZE) return false;
     pL->data[length] = *elem;
@@ -68,6 +77,14 @@ bool Append(StaticArray* pL, const ElemType* elem)
 
 void Delete(StaticArray* pL, const int index, ElemType* result)
 {
+//Usage:
+//    ElemType elem;
+//    printf("Delete:\n");
+//    while (!Empty(&_array)) {
+//        Delete(&_array, 0, &elem);
+//        if (elem == -1) break;
+//        printf("\t%d\n", elem);
+//    }
     const int length = Count(pL);
     assert(length > 0);
     assert(index >= 0);
@@ -85,10 +102,12 @@ void Delete(StaticArray* pL, const int index, ElemType* result)
 
 void Destroy(StaticArray* pL)
 {
+    Init(pL);
 }
 
 void Print(StaticArray* pL)
 {
+//Usage: Print(&_array);
     const int length = Count(pL);
     char buff[1 << 10];
     memset(buff, '\0', sizeof(buff));

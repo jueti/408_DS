@@ -1,14 +1,13 @@
 ﻿#include "pch.h"
 #include "static_array.h"
 
-StaticArray _array;
-
 void test()
 {
+    StaticArray _array;
     Init(&_array);
     int i = 0;
     ElemType elem = i;
-    printf("Append\n");
+    printf("Append:\n");
     while (Append(&_array, &elem)) {
         printf("\t%d\n", elem);
         elem = ++i;
@@ -21,12 +20,12 @@ void test()
         printf("\t%d\n", elem);
     }
     Print(&_array);
+    Destroy(&_array);
 }
-
 
 int main()
 {
     test();
-    //(void)getchar();
+    (void)getchar();
     return 0;
 }
