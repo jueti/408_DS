@@ -24,12 +24,12 @@ bool Full(const StaticArray* pL)
     return (Count(pL) == MAX_SIZE) ? true : false;
 }
 
-ElemType Get(const StaticArray* pL, int index)
+void Get(const StaticArray* pL, int index, ElemType* result)
 {
     const int length = Count(pL);
     assert(index >= 0);
     assert(length >= index + 1);
-    return (index >= 0 && length >= index + 1) ? pL->data[index] : -1 ;     /* raise -1 if out of range */
+    *result = (index >= 0 && length >= index + 1) ? pL->data[index] : -1 ;     /* raise -1 if out of range */
 }
 
 int Locate(const StaticArray* pL, const ElemType* elem)
@@ -78,9 +78,14 @@ void Destroy(StaticArray* pL)
 void Print(StaticArray* pL)
 {
     const int length = Count(pL);
+    char buff[1 << 10];
+    memset(buff, '\0', sizeof(buff));
+    setvbuf(stdout, buff, _IOFBF, sizeof(buff));
     int i = 0;
+    ElemType j;
     for (; i < length; i++) {
-        /*j = pL->data[i];*/
-        printf("L[%d]=%d\n", i, Get(pL, i));
+        Get(pL, i, &j);
+        printf("L[%d]=%d\n", i, j);
     }
+    fflush(stdout);
 }
