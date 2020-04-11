@@ -25,7 +25,7 @@ bool Full(const StaticArray* pL)
     return (Count(pL) == MAX_SIZE) ? true : false;
 }
 
-void Get(const StaticArray* pL, int index, ElemType* result)
+void Get(const StaticArray* pL, const int index, ElemType* result)
 {
     const int length = Count(pL);
     assert(index >= 0);
@@ -43,19 +43,29 @@ int Locate(const StaticArray* pL, const ElemType* elem)
     return -1;                                                                           /* raise -1 if no such elem */
 }
 
-bool Insert(StaticArray* pL, const int index, const ElemType* elem)
+bool Insert(StaticArray* pL, const int index, const ElemType elem)
 {
     const int length = Count(pL);
+
     assert(index >= 0);
-    assert(length >= index + 1);
+    assert(length >= index);
     assert(length < MAX_SIZE);
-    if (!(index >= 0 && length >= index + 1 && length < MAX_SIZE)) return false;
-    int i = length - 1;
-    for (; i >= index; i--)
-        pL->data[i + 1] = pL->data[i];
-    pL->data[index] = *elem;
-    pL->length++;
-    return true;
+
+    if (index < 0 || index > length) return false;                                       /* out of range */
+    if (length >= MAX_SIZE) return false;                                                /* no enough space */
+    if (index == length) {                                                               /* insert at tail */
+        pL->data[index] = elem;
+        pL->length++;
+        return true;
+    }
+    else {
+        int i = length - 1;
+        for (; i >= index; i--)
+            pL->data[i + 1] = pL->data[i];
+        pL->data[index] = elem;
+        pL->length++;
+        return true;
+    }
 }
 
 bool Append(StaticArray* pL, const ElemType* elem)
@@ -69,7 +79,7 @@ bool Append(StaticArray* pL, const ElemType* elem)
 //        elem = ++i;
 //    }
     const int length = Count(pL);
-    if (length == MAX_SIZE) return false;
+    if (length == MAX_SIZE) return false;                                                /* no enouph space */
     pL->data[length] = *elem;
     pL->length++;
     return true;
