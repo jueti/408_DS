@@ -1,7 +1,7 @@
 #ifndef __STATIC_ARRAY_H
 #define __STATIC_ARRAY_H
 
-#define MAX_SIZE 10000000
+#define MAX_SIZE 100
 
 typedef int ElemType;
 typedef struct {
@@ -20,7 +20,4 @@ bool Append(StaticArray* pL, const ElemType* elem);
 void Delete(StaticArray* pL, const int index, ElemType* result);
 void Destroy(StaticArray* pL);
 void Print(StaticArray* pL);
-void InsertList(StaticArray* pL, int i, ElemType e);
-void AppendList(StaticArray* pL, ElemType e);
-void PrintList(StaticArray* pL);
 #endif // __STATIC_ARRAY_H

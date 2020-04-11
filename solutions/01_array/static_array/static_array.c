@@ -84,27 +84,3 @@ void Print(StaticArray* pL)
         printf("L[%d]=%d\n", i, Get(pL, i));
     }
 }
-
-void InsertList(StaticArray* pL, int i, ElemType e) {
-    const int length = Count(pL);
-    assert(i >= 0);
-    assert(i <= length);                               /* +1 */
-    int j = length;
-    for (; j >= i; j--)
-        if (j <= MAX_SIZE)
-            pL->data[j] = pL->data[j - 1];                 /* sequence -> index */
-    pL->data[i] = e;
-    pL->length++;
-};
-
-void AppendList(StaticArray* pL, ElemType e) {
-    const int length = Count(pL);
-    InsertList(pL, length, e);
-
-};
-void PrintList(StaticArray* pL) {
-    const int length = Count(pL);
-    int j = 0;
-    for (; j < length; j++)
-        printf("L[%d]=%d\n", j, Get(pL, j));       /* index -> sequence */
-}
