@@ -23,29 +23,28 @@ void test_append_and_delete()
     Destroy(&_array);
 }
 
-void test_insert_success()
+void test_insert()
 {
     StaticArray _array;
     Init(&_array);
     printf("Insert: (success)\n");
+    printf("\t (only work in Release mode)\n");
+    printf("\t%s\n", Insert(&_array, 1, 1) ? "Fail" : "Success");                        /* out of range */
     printf("\t%s\n", Insert(&_array, 0, 1) ? "Success" : "Fail");
-    Print(&_array);
-}
+    printf("\t%s\n", Insert(&_array, 1, 3) ? "Success" : "Fail");
+    printf("\t%s\n", Insert(&_array, 1, 2) ? "Success" : "Fail");
+    while (!Full(&_array))
+        if (!(Insert(&_array, Count(&_array), 0)))
+            break;
 
-void test_insert_fail()
-{
-    StaticArray _array;
-    Init(&_array);
-    printf("Insert: (fail, only work in Release mode)\n");
-    printf("\t%s\n", Insert(&_array, 1, 1) ? "Success" : "Fail");
+    printf("\t%s\n", Insert(&_array, Count(&_array), 99) ? "Fail" : "Success");          /* no enough space */
     Print(&_array);
 }
 
 void test()
 {
     test_append_and_delete();
-    test_insert_success();
-    test_insert_fail();
+    test_insert();
     printf("Finish!\n");
 }
 
