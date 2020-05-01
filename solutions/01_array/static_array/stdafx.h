@@ -1,9 +1,9 @@
-﻿#ifndef __STABLE_H
-#define __STABLE_H
+﻿#ifndef __STDAFX_H
+#define __STDAFX_H
 
 #include <stdio.h>
 #include <stdbool.h>
 #include <assert.h>
 #include <string.h>
 
-#endif // __STABLE_H
+#endif // __STDAFX_H

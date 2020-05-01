@@ -1,4 +1,4 @@
-﻿#include "pch.h"
+﻿#include "stdafx.h"
 #include "static_array.h"
 
 void test_append_and_delete()
