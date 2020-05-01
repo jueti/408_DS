@@ -1,22 +1,18 @@
-﻿SORS = main.cpp static_array.cpp
-OBJS = main.obj static_array.obj
-PCHS = pch.h
-CLFLAGS = /nologo /EHsc
-LINKFLAGS = /nologo
+﻿main.exe: stdafx.obj main.obj static_array.obj
+    link.exe -nologo  main.obj static_array.obj stdafx.obj
+    del *.obj
 
-pch.pch:
-    $(CPP) /Yc$(PCHS) $*.cpp
+stdafx.obj:
+    cl.exe -nologo -D"NDEBUG" -O2 -c -Yc -Fpstdafx.pch -Fostdafx.obj stdafx.c
 
-static_array.obj:
-    $(CPP) $(CLFLAGS) /Yu$(PCHS) $*.cpp
+main.obj: stdafx.pch
+    cl.exe -nologo -D"NDEBUG" -O2 -c -Yustdafx.h -Fpstdafx.pch -Fomain.obj main.c
 
-main.obj:
-    $(CPP) $(CLFLAGS) /Yu$(PCHS) $*.cpp
+static_array.obj: stdafx.pch
+    cl.exe -nologo -D"NDEBUG" -O2 -c -Yustdafx.h -Fpstdafx.pch -Fostatic_array.obj static_array.c
 
-
-main.exe: $(OBJS)
-    link $(LINKFLAGS) $(OBJS)
-
-.PHONY : clean
-clean :
-    del $(OBJS) static_array.pch main.pch pch.pch pch.obj
+clean:
+    del *.obj >nul 2>&1
+    del *.pch >nul 2>&1
+    del *.exe >nul 2>&1
+    rmdir /S /Q x64 Debug Release >nul 2>&1
