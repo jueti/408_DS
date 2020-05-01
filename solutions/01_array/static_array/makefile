@@ -15,4 +15,3 @@ clean:
     del *.obj >nul 2>&1
     del *.pch >nul 2>&1
     del *.exe >nul 2>&1
-    rmdir /S /Q x64 Debug Release >nul 2>&1
